@@ -1,0 +1,15 @@
+# Python 3.12 compatible requirements
+fastapi>=0.111.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+numpy>=1.26.0
+pandas>=2.1.0
+python-multipart>=0.0.6
+setuptools>=68.0.0
+wheel>=0.40.0
+
+# MDF file parsing - fully compatible with Python 3.12 as of version 8.5.x
+asammdf>=8.5.0
+
+# CAN/BLF file parsing - fully compatible with Python 3.12 as of version 4.5.0
+python-can>=4.5.0 

@@ -1,0 +1,50 @@
+# Dependencies
+venv/
+node_modules/
+sampledata/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build outputs
+out/**/*.map
+*.vsix
+
+# Source files (bundled into out/)
+src/
+tsconfig.json
+
+# Development files
+.git/
+.gitignore
+.claude/
+tasks/
+prd.md
+CLAUDE.md
+setup.py
+README.md
+
+# Python development
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/ 

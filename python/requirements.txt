@@ -1,0 +1,10 @@
+fastapi==0.111.0
+uvicorn[standard]==0.27.0
+asammdf==8.2.9
+python-can==4.5.0
+pydantic==2.5.0
+numpy==1.26.0
+pandas==2.1.0
+python-multipart==0.0.6
+setuptools>=68.0.0
+wheel>=0.40.0 

@@ -1,0 +1,139 @@
+{
+  "name": "automotive-analysis",
+  "displayName": "Automotive Measurement Analysis",
+  "description": "AI-powered automotive measurement data analysis for steering system engineers",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "automotive-analysis.openFile",
+        "title": "Open in Analysis View",
+        "category": "Automotive Analysis"
+      },
+      {
+        "command": "automotive-analysis.startBackend",
+        "title": "Start Backend",
+        "category": "Automotive Analysis"
+      },
+      {
+        "command": "automotive-analysis.stopBackend",
+        "title": "Stop Backend",
+        "category": "Automotive Analysis"
+      },
+      {
+        "command": "automotive-analysis.switchBackend",
+        "title": "Switch Backend Type",
+        "category": "Automotive Analysis"
+      },
+      {
+        "command": "automotive-analysis.backendStatus",
+        "title": "Show Backend Status",
+        "category": "Automotive Analysis"
+      },
+      {
+        "command": "automotive-analysis.showSignals",
+        "title": "Show Available Signals",
+        "category": "Automotive Analysis"
+      },
+      {
+        "command": "automotive-analysis.troubleshoot",
+        "title": "Troubleshooting Guide",
+        "category": "Automotive Analysis"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "automotive-analysis.openFile",
+          "when": "resourceExtname == .mdf || resourceExtname == .mf4 || resourceExtname == .blf || resourceExtname == .asc",
+          "group": "navigation"
+        }
+      ]
+    },
+    "fileAssociations": [
+      {
+        "pattern": "*.mdf",
+        "icon": "resources/mdf-icon.svg"
+      },
+      {
+        "pattern": "*.mf4",
+        "icon": "resources/mdf-icon.svg"
+      },
+      {
+        "pattern": "*.blf",
+        "icon": "resources/blf-icon.svg"
+      },
+      {
+        "pattern": "*.asc",
+        "icon": "resources/asc-icon.svg"
+      }
+    ],
+    "configuration": {
+      "title": "Automotive Analysis",
+      "properties": {
+        "automotiveAnalysis.backendPort": {
+          "type": "number",
+          "default": 8000,
+          "description": "Port for the Python backend service"
+        },
+        "automotiveAnalysis.autoStartBackend": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically start the Python backend when the extension activates"
+        },
+        "automotiveAnalysis.maxFileSize": {
+          "type": "number",
+          "default": 1073741824,
+          "description": "Maximum file size in bytes (default: 1GB)"
+        },
+        "automotiveAnalysis.backendType": {
+          "type": "string",
+          "enum": ["auto", "docker", "uv", "python"],
+          "default": "auto",
+          "description": "Backend type preference: auto (tries Docker→UV→Python), docker (containerized), uv (fast Python manager), python (traditional)"
+        },
+        "automotiveAnalysis.dockerImage": {
+          "type": "string",
+          "default": "automotive-analysis-backend",
+          "description": "Docker image name for containerized backend"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npm run clean && npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "clean": "rimraf out",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "esbuild": "^0.25.5",
+    "eslint": "^8.57.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

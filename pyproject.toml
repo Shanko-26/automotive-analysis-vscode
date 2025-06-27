@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "automotive-analysis-backend"
+version = "0.1.0"
+description = "Automotive measurement data analysis backend"
+authors = [
+    {name = "Automotive Analysis Team", email = "team@example.com"},
+]
+dependencies = [
+    "fastapi==0.111.0",
+    "uvicorn[standard]==0.27.0",
+    "asammdf==8.2.9",
+    "python-can==4.5.0",
+    "pydantic==2.5.0",
+    "numpy>=1.26.0",
+    "pandas>=2.1.0",
+    "python-multipart==0.0.6",
+]
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[tool.uv]
+# Use UV's fast resolver
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[tool.uv.sources]
+# Pin to specific versions for automotive libraries
+asammdf = { version = "==8.2.9" }
+python-can = { version = "==4.5.0" }
+
+[tool.ruff]
+line-length = 100
+target-version = "py311" 
